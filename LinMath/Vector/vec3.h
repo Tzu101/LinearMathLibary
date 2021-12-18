@@ -2,6 +2,7 @@
 #define VEC3_H
 
 #include <cmath>
+#include <iostream>
 
 namespace linmath {
 
@@ -13,49 +14,90 @@ namespace linmath {
         T y;
         T z;
 
+        // Constructors
         Vec3() {
             this->x = 0;
             this->y = 0;
             this->z = 0;
         }
-
         Vec3(T x, T y, T z) {
             this->x = x;
             this->y = y;
             this->z = z;
         }
 
+        // Directional normalization
+        T length()const {
+            return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+        }
         void normalize() {
             T len = length();
             x = x / len;
             y = y / len;
             z = z / len;
         }
+        Vec3<T> normalized() {
+            T len = length();
+            return Vec3(x / len, y / len, z / len);
+        }
+
+        // Linear normalization
+        T sum()const {
+            return x + y + z;
+        }
         void normalize_sum() {
-            T sum = x + y + z;
+            T sum = sum();
             x = x / sum;
             y = y / sum;
             z = z / sum;
         }
 
-        T length()const {
-            return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
-        }
-        T sum()const {
-            return x + y + z;
+        // Dot product
+        T dot(const Vec3<T>& vec) {
+            return x*vec.x + y*vec.y + z*vec.z;
         }
 
-        /*Vec3<T> operator++(int) {
-            return Vec3<T>(x++, y++);
+        // Cross product
+        Vec3<T> cross(const Vec3<T>& vec) {
+            return Vec3(y*vec.z - z*vec.y, z*vec.x - x*vec.z, x*vec.y - y*vec.x);
+        }
+
+        // Negation
+        void operator-() {
+            return Vec3<T>(-x, -y, -z);
+        }
+
+        // Prefix increment
+        Vec3<T> operator++(int) {
+            Vec3<T> v = Vec3<T>(x, y, z);
+            x++;
+            y++;
+            z++;
+            return v;
         }
         Vec3<T> operator--(int) {
-            return Vec3<T>(x--, y--);
+            Vec3<T> v = Vec3<T>(x, y, z);
+            x--;
+            y--;
+            z--;
+            return v;
         }
 
-        Vec3<T> operator-() {
-            return Vec3<T>(-x, -y);
-        }*/
+        // Postfix increment
+        Vec3<T> operator++() {
+            x++;
+            y++;
+            z++;
+            return Vec3<T>(x, y, z);
+        }
+        Vec3<T> operator--() {
+            x--;
+            y--;
+            z--;
+            return Vec3<T>(x, y, z);
+        }
 
+        // Operations with scalars
         Vec3<T> operator+(const T t) {
             return Vec3<T>(x + t, y + t, z + t);
         }
@@ -72,57 +114,96 @@ namespace linmath {
             return Vec3<T>(x % t, y % t, z % t);
         }
         Vec3<T> operator+=(const T t) {
-            return Vec3<T>(x + t, y + t, z + t);
+            x += t;
+            y += t;
+            z += t;
         }
         Vec3<T> operator-=(const T t) {
-            return Vec3<T>(x - t, y - t, z - t);
+            x -= t;
+            y -= t;
+            z -= t;
         }
         Vec3<T> operator*=(const T t) {
-            return Vec3<T>(x * t, y * t, z * t);
+            x *= t;
+            y *= t;
+            z *= t;
         }
         Vec3<T> operator/=(const T t) {
-            return Vec3<T>(x / t, y / t, z / t);
+            x /= t;
+            y /= t;
+            z /= t;
         }
         Vec3<T> operator%=(const T t) {
-            return Vec3<T>(x % t, y % t, z % t);
+            x %= t;
+            y %= t;
+            z %= t;
         }
 
-        T operator*(const Vec3<T>& vec) {
-            return x*vec.x + y*vec.y + z*vec.z;
-        }
-
+        // Operations with vectors
         Vec3<T> operator+(const Vec3<T>& vec) {
             return Vec3<T>(x + vec.x, y + vec.y, z + vec.z);
         }
         Vec3<T> operator-(const Vec3<T>& vec) {
             return Vec3<T>(x - vec.x, y - vec.y, z - vec.z);
         }
-        Vec3<T> operator+=(const Vec3<T>& vec) {
-            return Vec3<T>(x + vec.x, y + vec.y, z + vec.z);
+        Vec3<T> operator*(const Vec3<T>& vec) {
+            return Vec3<T>(x * vec.x, y * vec.y, z * vec.z);
         }
-        Vec3<T> operator-=(const Vec3<T>& vec) {
-            return Vec3<T>(x - vec.x, y - vec.y, z - vec.z);
+        Vec3<T> operator/(const Vec3<T>& vec) {
+            return Vec3<T>(x / vec.x, y / vec.y, z / vec.z);
+        }
+        void operator+=(const Vec3<T>& vec) {
+            x += vec.x;
+            y += vec.y;
+            z += vec.z;
+        }
+        void operator-=(const Vec3<T>& vec) {
+            x -= vec.x;
+            y -= vec.y;
+            z -= vec.z;
+        }
+        void operator*=(const Vec3<T>& vec) {
+            x *= vec.x;
+            y *= vec.y;
+            z *= vec.z;
+        }
+        void operator/=(const Vec3<T>& vec) {
+            x /= vec.x;
+            y /= vec.y;
+            z /= vec.z;
         }
 
+        // Comparison between vectors
         bool operator<(const Vec3<T>& vec) {
-            return this->length() < vec.length();
+            return length() < vec.length();
         }
         bool operator>(const Vec3<T>& vec) {
-            return this->length() > vec.length();
+            return length() > vec.length();
         }
         bool operator<=(const Vec3<T>& vec) {
-            return this->length() <= vec.length();
+            return length() <= vec.length();
         }
         bool operator>=(const Vec3<T>& vec) {
-            return this->length() >= vec.length();
+            return length() >= vec.length();
         }
         bool operator==(const Vec3<T>& vec) {
-            return this->length() == vec.length();
+            return (x == vec.x && y == vec.y && z == vec.z);
         }
         bool operator!=(const Vec3<T>& vec) {
-            return this->length() != vec.length();
+            return (x != vec.x || y != vec.y || z != vec.z);
         }
 
+        // Input and output
+        friend std::ostream& operator<<(std::ostream& output, const Vec3<T>& vec) { 
+            output << vec.x << " " << vec.y << " " << vec.z;
+            return output;            
+        }
+        friend std::istream& operator>>(std::istream& input, Vec3<T>& vec) { 
+            input >> vec.x >> vec.y >> vec.z;
+            return input;            
+        }
+
+        // Predefined vectors
         static Vec3<T> zero();
         static Vec3<T> onex();
         static Vec3<T> oney();
@@ -130,6 +211,7 @@ namespace linmath {
         static Vec3<T> one();
     };
 
+    // Predefined vectors
     template <typename T>
     Vec3<T> Vec3<T>::zero() {
         return Vec3<T>(0, 0, 0);
@@ -144,7 +226,7 @@ namespace linmath {
     }
     template <typename T>
     Vec3<T> Vec3<T>::onez() {
-        return Vec3<T>(0, 1, 1);
+        return Vec3<T>(0, 0, 1);
     }
     template <typename T>
     Vec3<T> Vec3<T>::one() {
