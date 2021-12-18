@@ -41,15 +41,9 @@ namespace linmath {
             return Vec3(x / len, y / len, z / len);
         }
 
-        // Linear normalization
+        // Sum of all values
         T sum()const {
             return x + y + z;
-        }
-        void normalize_sum() {
-            T sum = sum();
-            x = x / sum;
-            y = y / sum;
-            z = z / sum;
         }
 
         // Dot product
@@ -63,11 +57,25 @@ namespace linmath {
         }
 
         // Negation
-        void operator-() {
+        Vec3<T> operator-() {
             return Vec3<T>(-x, -y, -z);
         }
 
         // Prefix increment
+        Vec3<T> operator++() {
+            x++;
+            y++;
+            z++;
+            return Vec3<T>(x, y, z);
+        }
+        Vec3<T> operator--() {
+            x--;
+            y--;
+            z--;
+            return Vec3<T>(x, y, z);
+        }
+
+        // Postfix increment
         Vec3<T> operator++(int) {
             Vec3<T> v = Vec3<T>(x, y, z);
             x++;
@@ -81,20 +89,6 @@ namespace linmath {
             y--;
             z--;
             return v;
-        }
-
-        // Postfix increment
-        Vec3<T> operator++() {
-            x++;
-            y++;
-            z++;
-            return Vec3<T>(x, y, z);
-        }
-        Vec3<T> operator--() {
-            x--;
-            y--;
-            z--;
-            return Vec3<T>(x, y, z);
         }
 
         // Operations with scalars
@@ -113,27 +107,27 @@ namespace linmath {
         Vec3<T> operator%(const T t) {
             return Vec3<T>(x % t, y % t, z % t);
         }
-        Vec3<T> operator+=(const T t) {
+        void operator+=(const T t) {
             x += t;
             y += t;
             z += t;
         }
-        Vec3<T> operator-=(const T t) {
+        void operator-=(const T t) {
             x -= t;
             y -= t;
             z -= t;
         }
-        Vec3<T> operator*=(const T t) {
+        void operator*=(const T t) {
             x *= t;
             y *= t;
             z *= t;
         }
-        Vec3<T> operator/=(const T t) {
+        void operator/=(const T t) {
             x /= t;
             y /= t;
             z /= t;
         }
-        Vec3<T> operator%=(const T t) {
+        void operator%=(const T t) {
             x %= t;
             y %= t;
             z %= t;
@@ -191,6 +185,21 @@ namespace linmath {
         }
         bool operator!=(const Vec3<T>& vec) {
             return (x != vec.x || y != vec.y || z != vec.z);
+        }
+
+        // Array functionality
+        T& operator[](int i) {
+
+            switch (i) {
+            case 0:
+                return x;
+            case 1:
+                return y;
+            case 2:
+                return z;
+            default:
+                return z;
+            }
         }
 
         // Input and output

@@ -45,16 +45,9 @@ namespace linmath {
             return Vec4(x / len, y / len, z / len, w / len);
         }
 
-        // Linear normalization
+        // Sum of all values
         T sum()const {
             return x + y + z + w;
-        }
-        void normalize_sum() {
-            T sum = sum();
-            x = x / sum;
-            y = y / sum;
-            z = z / sum;
-            w = w / sum;
         }
 
         // Dot product
@@ -63,11 +56,27 @@ namespace linmath {
         }
 
         // Negation
-        void operator-() {
+        Vec4<T> operator-() {
             return Vec4<T>(-x, -y, -z, -w);
         }
 
         // Prefix increment
+        Vec4<T> operator++() {
+            x++;
+            y++;
+            z++;
+            w++;
+            return Vec4<T>(x, y, z);
+        }
+        Vec4<T> operator--() {
+            x--;
+            y--;
+            z--;
+            w--;
+            return Vec4<T>(x, y, z);
+        }
+
+        // Postfix increment
         Vec4<T> operator++(int) {
             Vec4<T> v = Vec4<T>(x, y, z, w);
             x++;
@@ -83,22 +92,6 @@ namespace linmath {
             z--;
             w--;
             return v;
-        }
-
-        // Postfix increment
-        Vec4<T> operator++() {
-            x++;
-            y++;
-            z++;
-            w++;
-            return Vec4<T>(x, y, z);
-        }
-        Vec4<T> operator--() {
-            x--;
-            y--;
-            z--;
-            w--;
-            return Vec4<T>(x, y, z);
         }
 
         // Operations with scalars
@@ -204,6 +197,23 @@ namespace linmath {
         }
         bool operator!=(const Vec4<T>& vec) {
             return (x != vec.x || y != vec.y || z != vec.z || w != vec.w);
+        }
+
+        // Array functionality
+        T& operator[](int i) {
+
+            switch (i) {
+            case 0:
+                return x;
+            case 1:
+                return y;
+            case 2:
+                return z;
+            case 3:
+                return w;
+            default:
+                return w;
+            }
         }
 
         // Input and output

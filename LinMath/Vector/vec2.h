@@ -37,14 +37,9 @@ namespace linmath {
             return Vec2(x / len, y / len);
         }
 
-        // Linear normalization
+        // Sum of all values
         T sum()const {
             return x + y;
-        }
-        void normalize_sum() {
-            T sum = x + y;
-            x = x / sum;
-            y = y / sum;
         }
 
         // Dot product
@@ -53,11 +48,23 @@ namespace linmath {
         }
 
         // Negation
-        void operator-() {
+        Vec2<T> operator-() {
             return Vec2<T>(-x, -y);
         }
 
         // Prefix increment
+        Vec2<T> operator++() {
+            x++;
+            y++;
+            return Vec2<T>(x, y);
+        }
+        Vec2<T> operator--() {
+            x--;
+            y--;
+            return Vec2<T>(x, y);
+        }
+
+        // Postfix increment
         Vec2<T> operator++(int) {
             Vec2<T> v = Vec2<T>(x, y);
             x++;
@@ -69,18 +76,6 @@ namespace linmath {
             x--;
             y--;
             return v;
-        }
-
-        // Postfix increment
-        Vec2<T> operator++() {
-            x++;
-            y++;
-            return Vec2<T>(x, y);
-        }
-        Vec2<T> operator--() {
-            x--;
-            y--;
-            return Vec2<T>(x, y);
         }
 
         // Operations with scalars
@@ -99,23 +94,23 @@ namespace linmath {
         Vec2<T> operator%(const T t) {
             return Vec2<T>(x % t, y % t);
         }
-        Vec2<T> operator+=(const T t) {
+        void operator+=(const T t) {
             x += t;
             y += t;
         }
-        Vec2<T> operator-=(const T t) {
+        void operator-=(const T t) {
             x -= t;
             y -= t;
         }
-        Vec2<T> operator*=(const T t) {
+        void operator*=(const T t) {
             x *= t;
             y *= t;
         }
-        Vec2<T> operator/=(const T t) {
+        void operator/=(const T t) {
             x /= t;
             y /= t;
         }
-        Vec2<T> operator%=(const T t) {
+        void operator%=(const T t) {
             x %= t;
             y %= t;
         }
@@ -168,6 +163,19 @@ namespace linmath {
         }
         bool operator!=(const Vec2<T>& vec) {
             return (x != vec.x || y != vec.y);
+        }
+
+        // Array functionality
+        T& operator[](int i) {
+
+            switch (i) {
+            case 0:
+                return x;
+            case 1:
+                return y;
+            default:
+                return y;
+            }
         }
 
         // Input and output

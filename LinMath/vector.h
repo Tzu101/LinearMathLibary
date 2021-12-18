@@ -4,6 +4,7 @@
 #include "Vector/vec2.h"
 #include "Vector/vec3.h"
 #include "Vector/vec4.h"
+#include "Vector/vecN.h"
 
 namespace linmath {
 
