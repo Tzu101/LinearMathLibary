@@ -13,6 +13,7 @@ namespace linmath {
         T x;
         T y;
         T z;
+        T w;
 
         // Constructors
         Vec4() {
@@ -21,7 +22,7 @@ namespace linmath {
             this->z = 0;
             this->w = 0;
         }
-        Vec4(T x, T y, T z) {
+        Vec4(T x, T y, T z, T w) {
             this->x = x;
             this->y = y;
             this->z = z;
@@ -72,7 +73,7 @@ namespace linmath {
             x++;
             y++;
             z++;
-            w++:
+            w++;
             return v;
         }
         Vec4<T> operator--(int) {
