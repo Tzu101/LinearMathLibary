@@ -61,7 +61,7 @@ namespace linmath {
             return Vec3<T>(-x, -y, -z);
         }
 
-        // Prefix increment
+        // Prefix increment and decrement
         Vec3<T> operator++() {
             x++;
             y++;
@@ -75,20 +75,20 @@ namespace linmath {
             return Vec3<T>(x, y, z);
         }
 
-        // Postfix increment
+        // Postfix increment and decrement
         Vec3<T> operator++(int) {
-            Vec3<T> v = Vec3<T>(x, y, z);
+            Vec3<T> vec(x, y, z);
             x++;
             y++;
             z++;
-            return v;
+            return vec;
         }
         Vec3<T> operator--(int) {
-            Vec3<T> v = Vec3<T>(x, y, z);
+            Vec3<T> vec(x, y, z);
             x--;
             y--;
             z--;
-            return v;
+            return vec;
         }
 
         // Operations with scalars

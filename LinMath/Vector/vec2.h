@@ -52,7 +52,7 @@ namespace linmath {
             return Vec2<T>(-x, -y);
         }
 
-        // Prefix increment
+        // Prefix increment and decrement
         Vec2<T> operator++() {
             x++;
             y++;
@@ -64,18 +64,18 @@ namespace linmath {
             return Vec2<T>(x, y);
         }
 
-        // Postfix increment
+        // Postfix increment and decrement
         Vec2<T> operator++(int) {
-            Vec2<T> v = Vec2<T>(x, y);
+            Vec2<T> vec(x, y);
             x++;
             y++;
-            return v;
+            return vec;
         }
         Vec2<T> operator--(int) {
-            Vec2<T> v = Vec2<T>(x, y);
+            Vec2<T> vec(x, y);
             x--;
             y--;
-            return v;
+            return vec;
         }
 
         // Operations with scalars

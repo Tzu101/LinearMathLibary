@@ -60,7 +60,7 @@ namespace linmath {
             return Vec4<T>(-x, -y, -z, -w);
         }
 
-        // Prefix increment
+        // Prefix increment and decrement
         Vec4<T> operator++() {
             x++;
             y++;
@@ -76,22 +76,22 @@ namespace linmath {
             return Vec4<T>(x, y, z);
         }
 
-        // Postfix increment
+        // Postfix increment and decrement
         Vec4<T> operator++(int) {
-            Vec4<T> v = Vec4<T>(x, y, z, w);
+            Vec4<T> vec(x, y, z, w);
             x++;
             y++;
             z++;
             w++;
-            return v;
+            return vec;
         }
         Vec4<T> operator--(int) {
-            Vec4<T> v = Vec4<T>(x, y, z, w);
+            Vec4<T> vec(x, y, z, w);
             x--;
             y--;
             z--;
             w--;
-            return v;
+            return vec;
         }
 
         // Operations with scalars
