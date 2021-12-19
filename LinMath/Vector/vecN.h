@@ -14,13 +14,26 @@ namespace linmath {
 
         // Constructors
         VecN() {}
-        VecN(T value) {
+        VecN(T t) {
             for (int i=0; i<N; i++)
-                this->values[i] = value;
+                this->values[i] = t;
         }
         VecN(int values[N]) {
             for (int i=0; i<N; i++)
                 this->values[i] = values[i];
+        }
+
+        // Variadic constructor
+        template <typename T1, typename... T2>
+        VecN(T1 t, T2... ts) {
+            int n = N;
+            VecN v = VecN(&n, t, ts...);
+            *this = v;
+        }
+        template <typename T1, typename... T2>
+        VecN(int* n, T1 t, T2... ts) : VecN(n, ts...) {
+            *n = *n - 1;
+            values[*n] = t;
         }
 
         // Directional normalization
