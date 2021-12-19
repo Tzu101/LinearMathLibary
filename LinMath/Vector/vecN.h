@@ -26,15 +26,15 @@ namespace linmath {
         // Variadic constructor
         template <typename... Ts>
         VecN(T t, Ts... ts) {
-            int n = N;
+            auto n = N;
             *this = VecN(&n, t, ts...);
         }
         template <typename... Ts>
-        VecN(int* n, T t, Ts... ts) : VecN(n, ts...) {
+        VecN(auto* n, T t, Ts... ts) : VecN(n, ts...) {
             *n = *n - 1;
             this->values[*n] = t;
         }
-        VecN(int*){}
+        VecN(auto*){}
 
         // Directional normalization
         T length()const {

@@ -1,5 +1,5 @@
-#ifndef VEC2_H
-#define VEC2_H
+#ifndef MAT2_H
+#define MAT2_H
 
 #include <cmath>
 #include <iostream>
@@ -8,7 +8,7 @@ namespace linmath {
 
     template <typename T>
     class Mat2 {
-
+        
         public:
         T values[4];
 
@@ -36,15 +36,16 @@ namespace linmath {
         // Variadic constructor
         template <typename... Ts>
         Mat2(T t, Ts... ts) {
-            int n = 4;
+            auto n = 4;
             *this = Mat2(&n, t, ts...);
         }
         template <typename... Ts>
-        Mat2(int* n, T t, Ts... ts) : Mat2(n, ts...) {
+        Mat2(auto* n, T t, Ts... ts) : Mat2(n, ts...) {
             *n = *n - 1;
             values[*n] = t;
         }
-        Mat2(int*){}
+        Mat2(auto*){}
+
 
         // Matrix determinant
         T det() {
