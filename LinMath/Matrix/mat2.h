@@ -40,17 +40,18 @@ namespace linmath {
             *this = Mat2(&n, t, ts...);
         }
         template <typename... Ts>
-        Mat2(int* n, T t, Ts... ts) : Mat2(ts...) {
+        Mat2(int* n, T t, Ts... ts) : Mat2(n, ts...) {
             *n = *n - 1;
             values[*n] = t;
         }
+        Mat2(int*){}
 
         // Matrix determinant
         T det() {
-            return values[0]*values[3] - values[1]*values[2];
+            return determinant();
         }
         T determinant() {
-            return det();
+            return values[0]*values[3] - values[1]*values[2];
         }
 
         // Matrix transpozition
@@ -69,7 +70,7 @@ namespace linmath {
 
         // Matrix inverse
         void inverse() {
-            T det = det();
+            T det = determinant();
 
             T t;
             t = values[0];
@@ -79,16 +80,30 @@ namespace linmath {
             values[1] = -values[1];
             values[2] = -values[2];
 
-            *this *= det;
+            *this /= det;
         }
         Mat2<T> inversed() {
-            Mat2<T> mat = *this;
+            T det = determinant();
+            Mat2<T> mat = Mat2<T>();
+
             mat[0] = values[3];
             mat[1] = -values[1];
             mat[2] = -values[2];
             mat[3] = values[0];
-            return mat * det();
+
+            mat /= det;
+            return mat / det;
         }
+
+        // TODO
+        // Matrix pivot
+        /*void pivot() {
+
+            values[2] = values[]
+        }
+        Mat2<T> pivoted() {
+            return Mat2<T>(1);
+        }*/
 
         // Dot product
         Mat2<T> dot(const Mat2<T>& mat) {
@@ -219,46 +234,76 @@ namespace linmath {
         }
 
         // Operations with matricies
-        /*VecN<T, N> operator+(const VecN<T, N>& vec) {
-            VecN<T, N> out = VecN<T, N>();
-            for (int i=0; i<N; i++)
-                out[i] = values[i] + vec.values[i];
+        Mat2<T> operator+(const Mat2<T>& mat) {
+            Mat2<T> out = Mat2<T>();
+            out[0] = values[0]+mat.values[0];
+            out[1] = values[1]+mat.values[1];
+            out[2] = values[2]+mat.values[2];
+            out[3] = values[3]+mat.values[3];
             return out;
         }
-        VecN<T, N> operator-(const VecN<T, N>& vec) {
-            VecN<T, N> out = VecN<T, N>();
-            for (int i=0; i<N; i++)
-                out[i] = values[i] - vec.values[i];
+        Mat2<T> operator-(const Mat2<T>& mat) {
+            Mat2<T> out = Mat2<T>();
+            out[0] = values[0]-mat.values[0];
+            out[1] = values[1]-mat.values[1];
+            out[2] = values[2]-mat.values[2];
+            out[3] = values[3]-mat.values[3];
             return out;
         }
-        VecN<T, N> operator*(const VecN<T, N>& vec) {
-            VecN<T, N> out = VecN<T, N>();
-            for (int i=0; i<N; i++)
-                out[i] = values[i] * vec.values[i];
+        Mat2<T> operator*(const Mat2<T>& mat) {
+            Mat2<T> out = Mat2<T>();
+            out[0] = values[0]*mat.values[0];
+            out[1] = values[1]*mat.values[1];
+            out[2] = values[2]*mat.values[2];
+            out[3] = values[3]*mat.values[3];
             return out;
         }
-        VecN<T, N> operator/(const VecN<T, N>& vec) {
-            VecN<T, N> out = VecN<T, N>();
-            for (int i=0; i<N; i++)
-                out[i] = values[i] / vec.values[i];
+        Mat2<T> operator/(const Mat2<T>& mat) {
+            Mat2<T> out = Mat2<T>();
+            out[0] = values[0]/mat.values[0];
+            out[1] = values[1]/mat.values[1];
+            out[2] = values[2]/mat.values[2];
+            out[3] = values[3]/mat.values[3];
             return out;
         }
-        void operator+=(const VecN<T, N>& vec) {
-            for (int i=0; i<N; i++)
-                values[i] += vec.values[i];
+        void operator+=(const Mat2<T>& mat) {
+            values[0] += mat.values[0];
+            values[1] += mat.values[1];
+            values[2] += mat.values[2];
+            values[3] += mat.values[3];
         }
-        void operator-=(const VecN<T, N>& vec) {
-            for (int i=0; i<N; i++)
-                values[i] -= vec.values[i];
+        void operator-=(const Mat2<T>& mat) {
+            values[0] -= mat.values[0];
+            values[1] -= mat.values[1];
+            values[2] -= mat.values[2];
+            values[3] -= mat.values[3];
         }
-        void operator*=(const VecN<T, N>& vec) {
-            for (int i=0; i<N; i++)
-                values[i] *= vec.values[i];
+        void operator*=(const Mat2<T>& mat) {
+            values[0] *= mat.values[0];
+            values[1] *= mat.values[1];
+            values[2] *= mat.values[2];
+            values[3] *= mat.values[3];
         }
-        void operator/=(const VecN<T, N>& vec) {
-            for (int i=0; i<N; i++)
-                values[i] /= vec.values[i];
-        }*/
+        void operator/=(const Mat2<T>& mat) {
+            values[0] /= mat.values[0];
+            values[1] /= mat.values[1];
+            values[2] /= mat.values[2];
+            values[3] /= mat.values[3];
+        }
+
+        // Comparison between matricies
+        bool operator==(const Mat2<T>& mat) {
+            return values[0] == mat.values[0] && 
+                values[1] == mat.values[1] && 
+                values[2] == mat.values[2] && 
+                values[3] == mat.values[3];
+        }
+        bool operator!=(const Mat2<T>& mat) {
+            return values[0] != mat.values[0] || 
+                values[1] != mat.values[1] || 
+                values[2] != mat.values[2] || 
+                values[3] != mat.values[3];
+        }
 
         // Array functionality
         T& operator[](int i) {

@@ -30,10 +30,11 @@ namespace linmath {
             *this = VecN(&n, t, ts...);
         }
         template <typename... Ts>
-        VecN(int* n, T t, Ts... ts) : VecN(ts...) {
+        VecN(int* n, T t, Ts... ts) : VecN(n, ts...) {
             *n = *n - 1;
             this->values[*n] = t;
         }
+        VecN(int*){}
 
         // Directional normalization
         T length()const {
