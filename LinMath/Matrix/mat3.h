@@ -496,9 +496,15 @@ namespace linmath {
         static Mat3<T> onec(int c);
         static Mat3<T> identity();
         static Mat3<T> one();
+
+        // Transformation matricies
+        static Mat3<T> translation(T tx, T ty);
+        static Mat3<T> rotation(T ang);
+        static Mat3<T> rotationDeg(T ang);
+        static Mat3<T> scale(T sx, T sy);
     };
 
-    // Predefined vectors
+    // Predefined matricies
     template <typename T>
     Mat3<T> Mat3<T>::zero() {
         return Mat3<T>(.0);
@@ -530,6 +536,24 @@ namespace linmath {
     template <typename T>
     Mat3<T> Mat3<T>::one() {
         return Mat3<T>(1);
+    }
+
+    // Transformation matricies
+    template<typename T>
+    Mat3<T> Mat3<T>::translation(T tx, T ty) {
+        return Mat3<T>(1, 0, 0, 0, 1, 0, tx, ty, 1);
+    }
+    template<typename T>
+    Mat3<T> Mat3<T>::rotation(T ang) {
+        return Mat3<T>(cos(ang), -sin(ang), 0, sin(ang), cos(ang), 0, 0, 0, 1);
+    }
+    template<typename T>
+    Mat3<T> Mat3<T>::rotationDeg(T ang) {
+        return rotation(ang*3.14159265/180);
+    }
+    template<typename T>
+    Mat3<T> Mat3<T>::scale(T sx, T sy) {
+        return Mat3<T>(sx, 0, 0, 0, sy, 0, 0, 0, 1);
     }
 }
 

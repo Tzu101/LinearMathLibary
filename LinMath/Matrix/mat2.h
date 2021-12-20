@@ -1,7 +1,6 @@
 #ifndef MAT2_H
 #define MAT2_H
 
-#include <cmath>
 #include <iostream>
 
 namespace linmath {
@@ -327,7 +326,7 @@ namespace linmath {
         static Mat2<T> one();
     };
 
-    // Predefined vectors
+    // Predefined matricies
     template <typename T>
     Mat2<T> Mat2<T>::zero() {
         return Mat2<T>(.0);

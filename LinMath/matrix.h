@@ -8,26 +8,13 @@
 
 namespace linmath {
 
-    // Conversions between vector and matricies
+    // Conversions between matricies
     template<typename T>
-    Mat2<T> vec2mat(const Vec2<T>& vec1, const Vec2<T>& vec2) {
-        Mat2<T> mat = Mat2<T>();
-        mat[0] = vec1.x;
-        mat[1] = vec1.y;
-        mat[2] = vec2.x;
-        mat[3] = vec2.y;
-        return mat;
+    Mat3<T> mat2to3(const Mat2<T>& mat) {
+        return Mat3<T>( mat.values[0], mat.values[1], 0,
+                        mat.values[2], mat.values[3], 0,
+                        0, 0, 0);
     }
-
-    /*template<typename T>
-    Mat3<T> vec2mat(const Vec2<T>& vec1, const Vec2<T>& vec2) {
-        Mat3<T> mat = Mat3<T>();
-        mat[0] = vec1.x;
-        mat[1] = vec1.y;
-        mat[2] = vec2.x;
-        mat[3] = vec2.y;
-        return mat;
-    }*/
 }
 
 #endif
