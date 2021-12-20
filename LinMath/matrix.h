@@ -15,6 +15,11 @@ namespace linmath {
                         mat.values[2], mat.values[3], 0,
                         0, 0, 0);
     }
+    template<typename T>
+    Mat2<T> mat3to2(const Mat3<T>& mat) {
+        return Mat2<T>( mat.values[0], mat.values[1],
+                        mat.values[3], mat.values[4]);
+    }
 }
 
 #endif

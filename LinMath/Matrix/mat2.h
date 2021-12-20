@@ -319,9 +319,9 @@ namespace linmath {
 
         // Predefined matricies
         static Mat2<T> zero();
-        static Mat2<T> onev(int v);
-        static Mat2<T> oner(int r);
-        static Mat2<T> onec(int c);
+        static Mat2<T> onei(int ind);
+        static Mat2<T> oner(int row);
+        static Mat2<T> onec(int col);
         static Mat2<T> identity();
         static Mat2<T> one();
     };
@@ -332,23 +332,23 @@ namespace linmath {
         return Mat2<T>(.0);
     }
     template <typename T>
-    Mat2<T> Mat2<T>::onev(int v) {
+    Mat2<T> Mat2<T>::onei(int ind) {
         Mat2<T> mat(.0);
-        mat[v] = 1;
+        mat[ind] = 1;
         return mat;
     }
     template <typename T>
-    Mat2<T> Mat2<T>::oner(int r) {
+    Mat2<T> Mat2<T>::oner(int row) {
         Mat2<T> mat(.0);
-        for (int c=0; c<2; c++)
-            mat[2*r + c] = 1;
+        for (int col=0; col<2; col++)
+            mat[2*row + col] = 1;
         return mat;
     }
     template <typename T>
-    Mat2<T> Mat2<T>::onec(int c) {
+    Mat2<T> Mat2<T>::onec(int col) {
         Mat2<T> mat(.0);
-        for (int r=0; r<2; r++)
-            mat[2*r + c] = 1;
+        for (int row=0; row<2; row++)
+            mat[2*row + col] = 1;
         return mat;
     }
     template <typename T>

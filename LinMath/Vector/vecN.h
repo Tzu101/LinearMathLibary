@@ -245,7 +245,7 @@ namespace linmath {
 
         // Predefined vectors
         static VecN<T, N> zero();
-        static VecN<T, N> onev(int v);
+        static VecN<T, N> onei(int ind);
         static VecN<T, N> one();
     };
 
@@ -255,9 +255,9 @@ namespace linmath {
         return VecN<T, N>(.0);
     }
     template <typename T, int N>
-    VecN<T, N> VecN<T, N>::onev(int v) {
+    VecN<T, N> VecN<T, N>::onei(int ind) {
         VecN<T, N> vec(.0);
-        vec[v] = 1;
+        vec[ind] = 1;
         return vec;
     }
     template <typename T, int N>
