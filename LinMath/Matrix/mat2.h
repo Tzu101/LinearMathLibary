@@ -84,16 +84,9 @@ namespace linmath {
             *this /= det;
         }
         Mat2<T> inversed() {
-            T det = determinant();
-            Mat2<T> mat = Mat2<T>();
-
-            mat[0] = values[3];
-            mat[1] = -values[1];
-            mat[2] = -values[2];
-            mat[3] = values[0];
-
-            mat /= det;
-            return mat / det;
+            Mat2<T> mat = *this;
+            mat.inverse();
+            return mat;
         }
 
         // TODO
@@ -108,7 +101,7 @@ namespace linmath {
 
         // Dot product
         Mat2<T> dot(const Mat2<T>& mat) {
-            Mat2<T> dot();
+            Mat2<T> dot = Mat2<T>();
             dot[0] = values[0]*mat.values[0] + values[1]*mat.values[2];
             dot[1] = values[0]*mat.values[1] + values[1]*mat.values[3];
             dot[2] = values[2]*mat.values[0] + values[3]*mat.values[2];
@@ -294,16 +287,16 @@ namespace linmath {
 
         // Comparison between matricies
         bool operator==(const Mat2<T>& mat) {
-            return values[0] == mat.values[0] && 
-                values[1] == mat.values[1] && 
-                values[2] == mat.values[2] && 
-                values[3] == mat.values[3];
+            return  values[0] == mat.values[0] && 
+                    values[1] == mat.values[1] && 
+                    values[2] == mat.values[2] && 
+                    values[3] == mat.values[3];
         }
         bool operator!=(const Mat2<T>& mat) {
-            return values[0] != mat.values[0] || 
-                values[1] != mat.values[1] || 
-                values[2] != mat.values[2] || 
-                values[3] != mat.values[3];
+            return  values[0] != mat.values[0] || 
+                    values[1] != mat.values[1] || 
+                    values[2] != mat.values[2] || 
+                    values[3] != mat.values[3];
         }
 
         // Array functionality
