@@ -8,8 +8,10 @@ namespace linmath {
     template <typename T>
     class Mat2 {
         
-        public:
+        protected:
         T values[4];
+
+        public:
 
         // Constructors
         Mat2() {}
@@ -101,10 +103,10 @@ namespace linmath {
         // Dot product
         Mat2<T> dot(const Mat2<T>& mat) {
             Mat2<T> dot = Mat2<T>();
-            dot[0] = values[0]*mat.values[0] + values[1]*mat.values[2];
-            dot[1] = values[0]*mat.values[1] + values[1]*mat.values[3];
-            dot[2] = values[2]*mat.values[0] + values[3]*mat.values[2];
-            dot[3] = values[2]*mat.values[1] + values[3]*mat.values[3];
+            dot[0] = values[0]*mat[0] + values[1]*mat[2];
+            dot[1] = values[0]*mat[1] + values[1]*mat[3];
+            dot[2] = values[2]*mat[0] + values[3]*mat[2];
+            dot[3] = values[2]*mat[1] + values[3]*mat[3];
             return dot;
         }
 
@@ -229,99 +231,102 @@ namespace linmath {
         // Operations with matricies
         Mat2<T> operator+(const Mat2<T>& mat) {
             Mat2<T> out = Mat2<T>();
-            out[0] = values[0]+mat.values[0];
-            out[1] = values[1]+mat.values[1];
-            out[2] = values[2]+mat.values[2];
-            out[3] = values[3]+mat.values[3];
+            out[0] = values[0]+mat[0];
+            out[1] = values[1]+mat[1];
+            out[2] = values[2]+mat[2];
+            out[3] = values[3]+mat[3];
             return out;
         }
         Mat2<T> operator-(const Mat2<T>& mat) {
             Mat2<T> out = Mat2<T>();
-            out[0] = values[0]-mat.values[0];
-            out[1] = values[1]-mat.values[1];
-            out[2] = values[2]-mat.values[2];
-            out[3] = values[3]-mat.values[3];
+            out[0] = values[0]-mat[0];
+            out[1] = values[1]-mat[1];
+            out[2] = values[2]-mat[2];
+            out[3] = values[3]-mat[3];
             return out;
         }
         Mat2<T> operator*(const Mat2<T>& mat) {
             Mat2<T> out = Mat2<T>();
-            out[0] = values[0]*mat.values[0];
-            out[1] = values[1]*mat.values[1];
-            out[2] = values[2]*mat.values[2];
-            out[3] = values[3]*mat.values[3];
+            out[0] = values[0]*mat[0];
+            out[1] = values[1]*mat[1];
+            out[2] = values[2]*mat[2];
+            out[3] = values[3]*mat[3];
             return out;
         }
         Mat2<T> operator/(const Mat2<T>& mat) {
             Mat2<T> out = Mat2<T>();
-            out[0] = values[0]/mat.values[0];
-            out[1] = values[1]/mat.values[1];
-            out[2] = values[2]/mat.values[2];
-            out[3] = values[3]/mat.values[3];
+            out[0] = values[0]/mat[0];
+            out[1] = values[1]/mat[1];
+            out[2] = values[2]/mat[2];
+            out[3] = values[3]/mat[3];
             return out;
         }
         void operator+=(const Mat2<T>& mat) {
-            values[0] += mat.values[0];
-            values[1] += mat.values[1];
-            values[2] += mat.values[2];
-            values[3] += mat.values[3];
+            values[0] += mat[0];
+            values[1] += mat[1];
+            values[2] += mat[2];
+            values[3] += mat[3];
         }
         void operator-=(const Mat2<T>& mat) {
-            values[0] -= mat.values[0];
-            values[1] -= mat.values[1];
-            values[2] -= mat.values[2];
-            values[3] -= mat.values[3];
+            values[0] -= mat[0];
+            values[1] -= mat[1];
+            values[2] -= mat[2];
+            values[3] -= mat[3];
         }
         void operator*=(const Mat2<T>& mat) {
-            values[0] *= mat.values[0];
-            values[1] *= mat.values[1];
-            values[2] *= mat.values[2];
-            values[3] *= mat.values[3];
+            values[0] *= mat[0];
+            values[1] *= mat[1];
+            values[2] *= mat[2];
+            values[3] *= mat[3];
         }
         void operator/=(const Mat2<T>& mat) {
-            values[0] /= mat.values[0];
-            values[1] /= mat.values[1];
-            values[2] /= mat.values[2];
-            values[3] /= mat.values[3];
+            values[0] /= mat[0];
+            values[1] /= mat[1];
+            values[2] /= mat[2];
+            values[3] /= mat[3];
         }
 
         // Comparison between matricies
         bool operator==(const Mat2<T>& mat) {
-            return  values[0] == mat.values[0] && 
-                    values[1] == mat.values[1] && 
-                    values[2] == mat.values[2] && 
-                    values[3] == mat.values[3];
+            return  values[0] == mat[0] && 
+                    values[1] == mat[1] && 
+                    values[2] == mat[2] && 
+                    values[3] == mat[3];
         }
         bool operator!=(const Mat2<T>& mat) {
-            return  values[0] != mat.values[0] || 
-                    values[1] != mat.values[1] || 
-                    values[2] != mat.values[2] || 
-                    values[3] != mat.values[3];
+            return  values[0] != mat[0] || 
+                    values[1] != mat[1] || 
+                    values[2] != mat[2] || 
+                    values[3] != mat[3];
         }
 
         // Array functionality
-        T& operator[](int i) {
+        T& operator[](uint8_t i) {
+            return values[i];
+        }
+        const T& operator[](uint8_t i) const {
             return values[i];
         }
 
         // Input and output
         friend std::ostream& operator<<(std::ostream& output, const Mat2<T>& mat) { 
-            output << mat.values[0] << " ";
-            output << mat.values[1] << "\n";
-            output << mat.values[2] << " ";
-            output << mat.values[3];
+            output << mat[0] << " ";
+            output << mat[1] << "\n";
+            output << mat[2] << " ";
+            output << mat[3];
             return output;            
         }
         friend std::istream& operator>>(std::istream& input, Mat2<T>& mat) { 
-            for (int i=0; i<4; i++)
+            for (uint8_t i=0; i<4; i++)
                 input >> mat[i];
             return input;            
         }
 
         // Predefined matricies
         static Mat2<T> zero();
-        static Mat2<T> onei(int ind);
-        static Mat2<T> oner(int row);
-        static Mat2<T> onec(int col);
+        static Mat2<T> onei(uint8_t ind);
+        static Mat2<T> oner(uint8_t row);
+        static Mat2<T> onec(uint8_t col);
         static Mat2<T> identity();
         static Mat2<T> one();
     };
@@ -332,22 +337,22 @@ namespace linmath {
         return Mat2<T>(.0);
     }
     template <typename T>
-    Mat2<T> Mat2<T>::onei(int ind) {
+    Mat2<T> Mat2<T>::onei(uint8_t ind) {
         Mat2<T> mat(.0);
         mat[ind] = 1;
         return mat;
     }
     template <typename T>
-    Mat2<T> Mat2<T>::oner(int row) {
+    Mat2<T> Mat2<T>::oner(uint8_t row) {
         Mat2<T> mat(.0);
-        for (int col=0; col<2; col++)
+        for (uint8_t col=0; col<2; col++)
             mat[2*row + col] = 1;
         return mat;
     }
     template <typename T>
-    Mat2<T> Mat2<T>::onec(int col) {
+    Mat2<T> Mat2<T>::onec(uint8_t col) {
         Mat2<T> mat(.0);
-        for (int row=0; row<2; row++)
+        for (uint8_t row=0; row<2; row++)
             mat[2*row + col] = 1;
         return mat;
     }
