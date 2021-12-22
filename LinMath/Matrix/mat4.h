@@ -305,28 +305,27 @@ namespace linmath {
         // Dot product
         Mat4<T> dot(const Mat4<T>& mat) {
             Mat4<T> dot = Mat4<T>(1);
-            dot[0] = mat[0];
-            /*dot[0] = values[0]
-            dot[1] = 
-            dot[2] = 
-            dot[3] = 
-            dot[4] = 
-            dot[5] = 
-            dot[6] = 
-            dot[7] = 
-            dot[8] = 
-            dot[9] = 
-            dot[10] = 
-            dot[11] = 
-            dot[12] = 
-            dot[13] = 
-            dot[14] = 
-            dot[15] = */
+            dot[0] = mat[0]*values[0] + mat[4]*values[1] + mat[8]*values[2] + mat[12]*values[3];
+            dot[1] = mat[1]*values[0] + mat[5]*values[1] + mat[9]*values[2] + mat[13]*values[3];
+            dot[2] = mat[2]*values[0] + mat[6]*values[1] + mat[10]*values[2] + mat[14]*values[3];
+            dot[3] = mat[3]*values[0] + mat[7]*values[1] + mat[11]*values[2] + mat[15]*values[3];
+            dot[4] = mat[0]*values[4] + mat[4]*values[5] + mat[8]*values[6] + mat[12]*values[7];
+            dot[5] = mat[1]*values[4] + mat[5]*values[5] + mat[9]*values[6] + mat[13]*values[7];
+            dot[6] = mat[2]*values[4] + mat[6]*values[5] + mat[10]*values[6] + mat[14]*values[7];
+            dot[7] = mat[3]*values[4] + mat[7]*values[5] + mat[11]*values[6] + mat[15]*values[7];
+            dot[8] = mat[0]*values[8] + mat[4]*values[9] + mat[8]*values[10] + mat[12]*values[11];
+            dot[9] = mat[1]*values[8] + mat[5]*values[9] + mat[9]*values[10] + mat[13]*values[11];
+            dot[10] = mat[2]*values[8] + mat[6]*values[9] + mat[10]*values[10] + mat[14]*values[11];
+            dot[11] = mat[3]*values[8] + mat[7]*values[9] + mat[11]*values[10] + mat[15]*values[11];
+            dot[12] = mat[0]*values[12] + mat[4]*values[13] + mat[8]*values[14] + mat[12]*values[15];
+            dot[13] = mat[1]*values[12] + mat[5]*values[13] + mat[9]*values[14] + mat[13]*values[15];
+            dot[14] = mat[2]*values[12] + mat[6]*values[13] + mat[10]*values[14] + mat[14]*values[15];
+            dot[15] = mat[3]*values[12] + mat[7]*values[13] + mat[11]*values[14] + mat[15]*values[15];
             return dot;
         }
 
         // Negation
-        /*Mat4<T> operator-() {
+        Mat4<T> operator-() {
             Mat4<T> mat = Mat4<T>();
             mat[0] = -values[0];
             mat[1] = -values[1];
@@ -337,6 +336,13 @@ namespace linmath {
             mat[6] = -values[6];
             mat[7] = -values[7];
             mat[8] = -values[8];
+            mat[9] = -values[9];
+            mat[10] = -values[10];
+            mat[11] = -values[11];
+            mat[12] = -values[12];
+            mat[13] = -values[13];
+            mat[14] = -values[14];
+            mat[15] = -values[15];
             return mat;
         }
 
@@ -352,6 +358,13 @@ namespace linmath {
             mat[6] = ++values[6];
             mat[7] = ++values[7];
             mat[8] = ++values[8];
+            mat[9] = ++values[9];
+            mat[10] = ++values[10];
+            mat[11] = ++values[11];
+            mat[12] = ++values[12];
+            mat[13] = ++values[13];
+            mat[14] = ++values[14];
+            mat[15] = ++values[15];
             return mat;
         }
         Mat4<T> operator--() {
@@ -365,6 +378,13 @@ namespace linmath {
             mat[6] = --values[6];
             mat[7] = --values[7];
             mat[8] = --values[8];
+            mat[9] = --values[9];
+            mat[10] = --values[10];
+            mat[11] = --values[11];
+            mat[12] = --values[12];
+            mat[13] = --values[13];
+            mat[14] = --values[14];
+            mat[15] = --values[15];
             return mat;
         }
 
@@ -380,6 +400,13 @@ namespace linmath {
             mat[6] = values[6]++;
             mat[7] = values[7]++;
             mat[8] = values[8]++;
+            mat[9] = values[9]++;
+            mat[10] = values[10]++;
+            mat[11] = values[11]++;
+            mat[12] = values[12]++;
+            mat[13] = values[13]++;
+            mat[14] = values[14]++;
+            mat[15] = values[15]++;
             return mat;
         }
         Mat4<T> operator--(int) {
@@ -393,6 +420,13 @@ namespace linmath {
             mat[6] = values[6]--;
             mat[7] = values[7]--;
             mat[8] = values[8]--;
+            mat[9] = values[9]--;
+            mat[10] = values[10]--;
+            mat[11] = values[11]--;
+            mat[12] = values[12]--;
+            mat[13] = values[13]--;
+            mat[14] = values[14]--;
+            mat[15] = values[15]--;
             return mat;
         }
 
@@ -408,6 +442,13 @@ namespace linmath {
             mat[6] = values[6] + t;
             mat[7] = values[7] + t;
             mat[8] = values[8] + t;
+            mat[9] = values[9] + t;
+            mat[10] = values[10] + t;
+            mat[11] = values[11] + t;
+            mat[12] = values[12] + t;
+            mat[13] = values[13] + t;
+            mat[14] = values[14] + t;
+            mat[15] = values[15] + t;
             return mat;
         }
         Mat4<T> operator-(const T t) {
@@ -421,6 +462,13 @@ namespace linmath {
             mat[6] = values[6] - t;
             mat[7] = values[7] - t;
             mat[8] = values[8] - t;
+            mat[9] = values[9] - t;
+            mat[10] = values[10] - t;
+            mat[11] = values[11] - t;
+            mat[12] = values[12] - t;
+            mat[13] = values[13] - t;
+            mat[14] = values[14] - t;
+            mat[15] = values[15] - t;
             return mat;
         }
         Mat4<T> operator*(const T t) {
@@ -434,6 +482,13 @@ namespace linmath {
             mat[6] = values[6] * t;
             mat[7] = values[7] * t;
             mat[8] = values[8] * t;
+            mat[9] = values[9] * t;
+            mat[10] = values[10] * t;
+            mat[11] = values[11] * t;
+            mat[12] = values[12] * t;
+            mat[13] = values[13] * t;
+            mat[14] = values[14] * t;
+            mat[15] = values[15] * t;
             return mat;
         }
         Mat4<T> operator/(const T t) {
@@ -447,6 +502,13 @@ namespace linmath {
             mat[6] = values[6] / t;
             mat[7] = values[7] / t;
             mat[8] = values[8] / t;
+            mat[9] = values[9] / t;
+            mat[10] = values[10] / t;
+            mat[11] = values[11] / t;
+            mat[12] = values[12] / t;
+            mat[13] = values[13] / t;
+            mat[14] = values[14] / t;
+            mat[15] = values[15] / t;
             return mat;
         }
        Mat4<T> operator%(const T t) {
@@ -460,6 +522,13 @@ namespace linmath {
             mat[6] = values[6] % t;
             mat[7] = values[7] % t;
             mat[8] = values[8] % t;
+            mat[9] = values[9] % t;
+            mat[10] = values[10] % t;
+            mat[11] = values[11] % t;
+            mat[12] = values[12] % t;
+            mat[13] = values[13] % t;
+            mat[14] = values[14] % t;
+            mat[15] = values[15] % t;
             return mat;
         }
         void operator+=(const T t) {
@@ -472,6 +541,13 @@ namespace linmath {
             values[6] += t;
             values[7] += t;
             values[8] += t;
+            values[9] += t;
+            values[10] += t;
+            values[11] += t;
+            values[12] += t;
+            values[13] += t;
+            values[14] += t;
+            values[15] += t;
         }
         void operator-=(const T t) {
             values[0] -= t;
@@ -483,6 +559,13 @@ namespace linmath {
             values[6] -= t;
             values[7] -= t;
             values[8] -= t;
+            values[9] -= t;
+            values[10] -= t;
+            values[11] -= t;
+            values[12] -= t;
+            values[13] -= t;
+            values[14] -= t;
+            values[15] -= t;
         }
         void operator*=(const T t) {
             values[0] *= t;
@@ -494,7 +577,14 @@ namespace linmath {
             values[6] *= t;
             values[7] *= t;
             values[8] *= t;
-        }*/
+            values[9] *= t;
+            values[10] *= t;
+            values[11] *= t;
+            values[12] *= t;
+            values[13] *= t;
+            values[14] *= t;
+            values[15] *= t;
+        }
         void operator/=(const T t) {
             values[0] /= t;
             values[1] /= t;
@@ -513,7 +603,7 @@ namespace linmath {
             values[14] /= t;
             values[15] /= t;
         }
-        /*void operator%=(const T t) {
+        void operator%=(const T t) {
             values[0] %= t;
             values[1] %= t;
             values[2] %= t;
@@ -523,6 +613,13 @@ namespace linmath {
             values[6] %= t;
             values[7] %= t;
             values[8] %= t;
+            values[9] %= t;
+            values[10] %= t;
+            values[11] %= t;
+            values[12] %= t;
+            values[13] %= t;
+            values[14] %= t;
+            values[15] %= t;
         }
 
         // Operations with matricies
@@ -537,6 +634,13 @@ namespace linmath {
             out[6] = values[6]+mat[6];
             out[7] = values[7]+mat[7];
             out[8] = values[8]+mat[8];
+            out[9] = values[9]+mat[9];
+            out[10] = values[10]+mat[10];
+            out[11] = values[11]+mat[11];
+            out[12] = values[12]+mat[12];
+            out[13] = values[13]+mat[13];
+            out[14] = values[14]+mat[14];
+            out[15] = values[15]+mat[15];
             return out;
         }
         Mat4<T> operator-(const Mat4<T>& mat) {
@@ -550,6 +654,13 @@ namespace linmath {
             out[6] = values[6]-mat[6];
             out[7] = values[7]-mat[7];
             out[8] = values[8]-mat[8];
+            out[9] = values[9]-mat[9];
+            out[10] = values[10]-mat[10];
+            out[11] = values[11]-mat[11];
+            out[12] = values[12]-mat[12];
+            out[13] = values[13]-mat[13];
+            out[14] = values[14]-mat[14];
+            out[15] = values[15]-mat[15];
             return out;
         }
         Mat4<T> operator*(const Mat4<T>& mat) {
@@ -563,6 +674,13 @@ namespace linmath {
             out[6] = values[6]*mat[6];
             out[7] = values[7]*mat[7];
             out[8] = values[8]*mat[8];
+            out[9] = values[9]*mat[9];
+            out[10] = values[10]*mat[10];
+            out[11] = values[11]*mat[11];
+            out[12] = values[12]*mat[12];
+            out[13] = values[13]*mat[13];
+            out[14] = values[14]*mat[14];
+            out[15] = values[15]*mat[15];
             return out;
         }
         Mat4<T> operator/(const Mat4<T>& mat) {
@@ -576,6 +694,13 @@ namespace linmath {
             out[6] = values[6]/mat[6];
             out[7] = values[7]/mat[7];
             out[8] = values[8]/mat[8];
+            out[9] = values[9]/mat[9];
+            out[10] = values[10]/mat[10];
+            out[11] = values[11]/mat[11];
+            out[12] = values[12]/mat[12];
+            out[13] = values[13]/mat[13];
+            out[14] = values[14]/mat[14];
+            out[15] = values[15]/mat[15];
             return out;
         }
         void operator+=(const Mat4<T>& mat) {
@@ -588,6 +713,13 @@ namespace linmath {
             values[6] += mat[6];
             values[7] += mat[7];
             values[8] += mat[8];
+            values[9] += mat[9];
+            values[10] += mat[10];
+            values[11] += mat[11];
+            values[12] += mat[12];
+            values[13] += mat[13];
+            values[14] += mat[14];
+            values[15] += mat[15];
         }
         void operator-=(const Mat4<T>& mat) {
             values[0] -= mat[0];
@@ -599,6 +731,13 @@ namespace linmath {
             values[6] -= mat[6];
             values[7] -= mat[7];
             values[8] -= mat[8];
+            values[9] -= mat[9];
+            values[10] -= mat[10];
+            values[11] -= mat[11];
+            values[12] -= mat[12];
+            values[13] -= mat[13];
+            values[14] -= mat[14];
+            values[15] -= mat[15];
         }
         void operator*=(const Mat4<T>& mat) {
             values[0] *= mat[0];
@@ -610,6 +749,13 @@ namespace linmath {
             values[6] *= mat[6];
             values[7] *= mat[7];
             values[8] *= mat[8];
+            values[9] *= mat[9];
+            values[10] *= mat[10];
+            values[11] *= mat[11];
+            values[12] *= mat[12];
+            values[13] *= mat[13];
+            values[14] *= mat[14];
+            values[15] *= mat[15];
         }
         void operator/=(const Mat4<T>& mat) {
             values[0] /= mat[0];
@@ -621,6 +767,13 @@ namespace linmath {
             values[6] /= mat[6];
             values[7] /= mat[7];
             values[8] /= mat[8];
+            values[9] /= mat[9];
+            values[10] /= mat[10];
+            values[11] /= mat[11];
+            values[12] /= mat[12];
+            values[13] /= mat[13];
+            values[14] /= mat[14];
+            values[15] /= mat[15];
         }
 
         // Comparison between matricies
@@ -633,19 +786,33 @@ namespace linmath {
                     values[5] == mat[5] && 
                     values[6] == mat[6] && 
                     values[7] == mat[7] && 
-                    values[8] == mat[8];
+                    values[8] == mat[8] && 
+                    values[9] == mat[9] && 
+                    values[10] == mat[10] && 
+                    values[11] == mat[11] && 
+                    values[12] == mat[12] && 
+                    values[13] == mat[13] && 
+                    values[14] == mat[14] && 
+                    values[15] == mat[15];
         }
         bool operator!=(const Mat4<T>& mat) {
-            return values[0] != mat[0] || 
-                values[1] != mat[1] || 
-                values[2] != mat[2] || 
-                values[3] != mat[3] || 
-                values[4] != mat[4] || 
-                values[5] != mat[5] || 
-                values[6] != mat[6] || 
-                values[7] != mat[7] || 
-                values[8] != mat[8];
-        }*/
+            return  values[0] != mat[0] || 
+                    values[1] != mat[1] || 
+                    values[2] != mat[2] || 
+                    values[3] != mat[3] || 
+                    values[4] != mat[4] || 
+                    values[5] != mat[5] || 
+                    values[6] != mat[6] || 
+                    values[7] != mat[7] || 
+                    values[8] != mat[8] ||
+                    values[9] == mat[9] || 
+                    values[10] == mat[10] || 
+                    values[11] == mat[11] || 
+                    values[12] == mat[12] || 
+                    values[13] == mat[13] || 
+                    values[14] == mat[14] || 
+                    values[15] == mat[15];
+        }
 
         // Array functionality
         T& operator[](uint8_t i) {

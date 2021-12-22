@@ -456,15 +456,15 @@ namespace linmath {
                     values[8] == mat[8];
         }
         bool operator!=(const Mat3<T>& mat) {
-            return values[0] != mat[0] || 
-                values[1] != mat[1] || 
-                values[2] != mat[2] || 
-                values[3] != mat[3] || 
-                values[4] != mat[4] || 
-                values[5] != mat[5] || 
-                values[6] != mat[6] || 
-                values[7] != mat[7] || 
-                values[8] != mat[8];
+            return  values[0] != mat[0] || 
+                    values[1] != mat[1] || 
+                    values[2] != mat[2] || 
+                    values[3] != mat[3] || 
+                    values[4] != mat[4] || 
+                    values[5] != mat[5] || 
+                    values[6] != mat[6] || 
+                    values[7] != mat[7] || 
+                    values[8] != mat[8];
         }
 
         // Array functionality
