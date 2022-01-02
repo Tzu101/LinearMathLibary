@@ -114,31 +114,31 @@ namespace linmath {
         VecN<T, N> operator+(const T t) {
             VecN<T, N> vec = VecN<T, N>();
             for (size_t i=0; i<N; i++)
-                vec = values[i] + t;
+                vec[i] = values[i] + t;
             return vec;
         }
         VecN<T, N> operator-(const T t) {
             VecN<T, N> vec = VecN<T, N>();
             for (size_t i=0; i<N; i++)
-                vec = values[i] - t;
+                vec[i] = values[i] - t;
             return vec;
         }
         VecN<T, N> operator*(const T t) {
             VecN<T, N> vec = VecN<T, N>();
             for (size_t i=0; i<N; i++)
-                vec = values[i] * t;
+                vec[i] = values[i] * t;
             return vec;
         }
         VecN<T, N> operator/(const T t) {
             VecN<T, N> vec = VecN<T, N>();
             for (size_t i=0; i<N; i++)
-                vec = values[i] / t;
+                vec[i] = values[i] / t;
             return vec;
         }
         VecN<T, N> operator%(const T t) {
             VecN<T, N> vec = VecN<T, N>();
             for (size_t i=0; i<N; i++)
-                vec = values[i] % t;
+                vec[i] = values[i] % t;
             return vec;
         }
         void operator+=(const T t) {
@@ -268,6 +268,43 @@ namespace linmath {
     template <typename T, size_t N>
     VecN<T, N> VecN<T, N>::one() {
         return VecN<T, N>(1);
+    }
+
+    // Overload functions
+    template <typename T, typename K, size_t N>
+    VecN<T, N> operator+(const K k, const VecN<T, N>& vec) {
+        VecN<T, N> out = VecN<T, N>();
+        for (size_t i=0; i<N; i++)
+            out[i] = vec[i] + k;
+        return out;
+    }
+    template <typename T, typename K, size_t N>
+    VecN<T, N> operator-(const K k, const VecN<T, N>& vec) {
+        VecN<T, N> out = VecN<T, N>();
+        for (size_t i=0; i<N; i++)
+            out[i]  = vec[i] - k;
+        return out;
+    }
+    template <typename T, typename K, size_t N>
+    VecN<T, N> operator*(const K k, const VecN<T, N>& vec) {
+        VecN<T, N> out = VecN<T, N>();
+        for (size_t i=0; i<N; i++)
+            out[i]  = vec[i] * k;
+        return out;
+    }
+    template <typename T, typename K, size_t N>
+    VecN<T, N> operator/(const K k, const VecN<T, N>& vec) {
+        VecN<T, N> out = VecN<T, N>();
+        for (size_t i=0; i<N; i++)
+            out[i]  = vec[i] / k;
+        return out;
+    }
+    template <typename T, typename K, size_t N>
+    VecN<T, N> operator%(const K k, const VecN<T, N>& vec) {
+        VecN<T, N> out = VecN<T, N>();
+        for (size_t i=0; i<N; i++)
+            out[i]  = vec[i] % k;
+        return out;
     }
 }
 

@@ -364,6 +364,53 @@ namespace linmath {
     Mat2<T> Mat2<T>::one() {
         return Mat2<T>(1);
     }
+
+    // Overload functions
+    template <typename T, typename K>
+    Mat2<T> operator+(const Mat2<T> mat, const K k) {
+        Mat2<T> out = Mat2<T>();
+        out[0] = mat[0] + k;
+        out[1] = mat[1] + k;
+        out[2] = mat[2] + k;
+        out[3] = mat[3] + k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat2<T> operator-(const Mat2<T> mat, const K k) {
+        Mat2<T> out = Mat2<T>();
+        out[0] = mat[0] - k;
+        out[1] = mat[1] - k;
+        out[2] = mat[2] - k;
+        out[3] = mat[3] - k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat2<T> operator*(const Mat2<T> mat, const K k) {
+        Mat2<T> out = Mat2<T>();
+        out[0] = mat[0] * k;
+        out[1] = mat[1] * k;
+        out[2] = mat[2] * k;
+        out[3] = mat[3] * k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat2<T> operator/(const Mat2<T> mat, const K k) {
+        Mat2<T> out = Mat2<T>();
+        out[0] = mat[0] / k;
+        out[1] = mat[1] / k;
+        out[2] = mat[2] / k;
+        out[3] = mat[3] / k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat2<T> operator%(const Mat2<T> mat, const K k) {
+        Mat2<T> out = Mat2<T>();
+        out[0] = mat[0] % k;
+        out[1] = mat[1] % k;
+        out[2] = mat[2] % k;
+        out[3] = mat[3] % k;
+        return out;
+    }
 }
 
 #endif

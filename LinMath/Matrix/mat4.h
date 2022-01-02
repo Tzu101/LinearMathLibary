@@ -952,6 +952,113 @@ namespace linmath {
                         0, 0, sz, 0,
                         0, 0, 0, 1);
     }
+
+    // Overload functions
+    template <typename T, typename K>
+    Mat4<T> operator+(const Mat4<T> mat, const K k) {
+        Mat4<T> out = Mat4<T>();
+        out[0] = mat[0] + k;
+        out[1] = mat[1] + k;
+        out[2] = mat[2] + k;
+        out[3] = mat[3] + k;
+        out[4] = mat[4] + k;
+        out[5] = mat[5] + k;
+        out[6] = mat[6] + k;
+        out[7] = mat[7] + k;
+        out[8] = mat[8] + k;
+        out[9] = mat[9] + k;
+        out[10] = mat[10] + k;
+        out[11] = mat[11] + k;
+        out[12] = mat[12] + k;
+        out[13] = mat[13] + k;
+        out[14] = mat[14] + k;
+        out[15] = mat[15] + k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat4<T> operator-(const Mat4<T> mat, const K k) {
+        Mat4<T> out = Mat4<T>();
+        out[0] = mat[0] - k;
+        out[1] = mat[1] - k;
+        out[2] = mat[2] - k;
+        out[3] = mat[3] - k;
+        out[4] = mat[4] - k;
+        out[5] = mat[5] - k;
+        out[6] = mat[6] - k;
+        out[7] = mat[7] - k;
+        out[8] = mat[8] - k;
+        out[9] = mat[9] - k;
+        out[10] = mat[10] - k;
+        out[11] = mat[11] - k;
+        out[12] = mat[12] - k;
+        out[13] = mat[13] - k;
+        out[14] = mat[14] - k;
+        out[15] = mat[15] - k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat4<T> operator*(const Mat4<T> mat, const K k) {
+        Mat4<T> out = Mat4<T>();
+        out[0] = mat[0] * k;
+        out[1] = mat[1] * k;
+        out[2] = mat[2] * k;
+        out[3] = mat[3] * k;
+        out[4] = mat[4] * k;
+        out[5] = mat[5] * k;
+        out[6] = mat[6] * k;
+        out[7] = mat[7] * k;
+        out[8] = mat[8] * k;
+        out[9] = mat[9] * k;
+        out[10] = mat[10] * k;
+        out[11] = mat[11] * k;
+        out[12] = mat[12] * k;
+        out[13] = mat[13] * k;
+        out[14] = mat[14] * k;
+        out[15] = mat[15] * k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat4<T> operator/(const Mat4<T> mat, const K k) {
+        Mat4<T> out = Mat4<T>();
+        out[0] = mat[0] / k;
+        out[1] = mat[1] / k;
+        out[2] = mat[2] / k;
+        out[3] = mat[3] / k;
+        out[4] = mat[4] / k;
+        out[5] = mat[5] / k;
+        out[6] = mat[6] / k;
+        out[7] = mat[7] / k;
+        out[8] = mat[8] / k;
+        out[9] = mat[9] / k;
+        out[10] = mat[10] / k;
+        out[11] = mat[11] / k;
+        out[12] = mat[12] / k;
+        out[13] = mat[13] / k;
+        out[14] = mat[14] / k;
+        out[15] = mat[15] / k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat4<T> operator%(const Mat4<T> mat, const K k) {
+        Mat4<T> out = Mat4<T>();
+        out[0] = mat[0] % k;
+        out[1] = mat[1] % k;
+        out[2] = mat[2] % k;
+        out[3] = mat[3] % k;
+        out[4] = mat[4] % k;
+        out[5] = mat[5] % k;
+        out[6] = mat[6] % k;
+        out[7] = mat[7] % k;
+        out[8] = mat[8] % k;
+        out[9] = mat[9] % k;
+        out[10] = mat[10] % k;
+        out[11] = mat[11] % k;
+        out[12] = mat[12] % k;
+        out[13] = mat[13] % k;
+        out[14] = mat[14] % k;
+        out[15] = mat[15] % k;
+        return out;
+    }
 }
 
 #endif

@@ -241,6 +241,28 @@ namespace linmath {
     Vec3<T> Vec3<T>::one() {
         return Vec3<T>(1, 1, 1);
     }
+
+    // Overload functions
+    template <typename T, typename K>
+    Vec3<T> operator+(const K k, const Vec3<T>& vec) {
+        return Vec3<T>(vec.x + k, vec.y + k, vec.z + k);
+    }
+    template <typename T, typename K>
+    Vec3<T> operator-(const K k, const Vec3<T>& vec) {
+        return Vec3<T>(vec.x - k, vec.y - k, vec.z - k);
+    }
+    template <typename T, typename K>
+    Vec3<T> operator*(const K k, const Vec3<T>& vec) {
+        return Vec3<T>(vec.x * k, vec.y * k, vec.z * k);
+    }
+    template <typename T, typename K>
+    Vec3<T> operator/(const K k, const Vec3<T>& vec) {
+        return Vec3<T>(vec.x / k, vec.y / k, vec.z / k);
+    }
+    template <typename T, typename K>
+    Vec3<T> operator%(const K k, const Vec3<T>& vec) {
+        return Vec3<T>(vec.x % k, vec.y % k, vec.z % k);
+    }
 }
 
 #endif

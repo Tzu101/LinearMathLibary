@@ -560,6 +560,78 @@ namespace linmath {
     Mat3<T> Mat3<T>::scale(T sx, T sy) {
         return Mat3<T>(sx, 0, 0, 0, sy, 0, 0, 0, 1);
     }
+
+    // Overload functions
+    template <typename T, typename K>
+    Mat3<T> operator+(const Mat3<T> mat, const K k) {
+        Mat3<T> out = Mat3<T>();
+        out[0] = mat[0] + k;
+        out[1] = mat[1] + k;
+        out[2] = mat[2] + k;
+        out[3] = mat[3] + k;
+        out[4] = mat[4] + k;
+        out[5] = mat[5] + k;
+        out[6] = mat[6] + k;
+        out[7] = mat[7] + k;
+        out[8] = mat[8] + k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat3<T> operator-(const Mat3<T> mat, const K k) {
+        Mat3<T> out = Mat3<T>();
+        out[0] = mat[0] - k;
+        out[1] = mat[1] - k;
+        out[2] = mat[2] - k;
+        out[3] = mat[3] - k;
+        out[4] = mat[4] - k;
+        out[5] = mat[5] - k;
+        out[6] = mat[6] - k;
+        out[7] = mat[7] - k;
+        out[8] = mat[8] - k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat3<T> operator*(const Mat3<T> mat, const K k) {
+        Mat3<T> out = Mat3<T>();
+        out[0] = mat[0] * k;
+        out[1] = mat[1] * k;
+        out[2] = mat[2] * k;
+        out[3] = mat[3] * k;
+        out[4] = mat[4] * k;
+        out[5] = mat[5] * k;
+        out[6] = mat[6] * k;
+        out[7] = mat[7] * k;
+        out[8] = mat[8] * k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat3<T> operator/(const Mat3<T> mat, const K k) {
+        Mat3<T> out = Mat3<T>();
+        out[0] = mat[0] / k;
+        out[1] = mat[1] / k;
+        out[2] = mat[2] / k;
+        out[3] = mat[3] / k;
+        out[4] = mat[4] / k;
+        out[5] = mat[5] / k;
+        out[6] = mat[6] / k;
+        out[7] = mat[7] / k;
+        out[8] = mat[8] / k;
+        return out;
+    }
+    template <typename T, typename K>
+    Mat3<T> operator%(const Mat3<T> mat, const K k) {
+        Mat3<T> out = Mat3<T>();
+        out[0] = mat[0] % k;
+        out[1] = mat[1] % k;
+        out[2] = mat[2] % k;
+        out[3] = mat[3] % k;
+        out[4] = mat[4] % k;
+        out[5] = mat[5] % k;
+        out[6] = mat[6] % k;
+        out[7] = mat[7] % k;
+        out[8] = mat[8] % k;
+        return out;
+    }
 }
 
 #endif
